@@ -18,7 +18,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('rust') }}
+    - {{ compiler('rust') }}                 # [unix]
+    - rust_win-64                            # [win]
     - {{ compiler('c') }}                    # [unix]
     - {{ compiler('m2w64_c') }}              # [win]
   host:
