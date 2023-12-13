@@ -28,7 +28,6 @@ requirements:
     - setuptools
     - wheel
     - maturin 0.14.17
-    - toml
   run:
     - python
 
