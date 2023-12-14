@@ -38,10 +38,13 @@ test:
     - cramjam
   commands:
     - pip check
-    - pytest
+    - pytest -v -n auto
   requires:
     - pip
-    - pytest
+    - pytest >=5.30
+    - numpy
+    - pytest-xdist
+    - hypothesis
 
 about:
   home: https://github.com/milesgranger/pyrus-cramjam
