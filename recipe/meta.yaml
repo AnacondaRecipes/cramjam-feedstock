@@ -38,6 +38,7 @@ test:
     - cramjam
   commands:
     - pip check
+    - pytest
   requires:
     - pip
 
