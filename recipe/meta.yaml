@@ -27,7 +27,7 @@ requirements:
     - pip
     - setuptools
     - wheel
-    - maturin 0.14.17
+    - maturin >=0.14
   run:
     - python
 
