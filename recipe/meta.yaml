@@ -41,6 +41,7 @@ test:
     - pytest
   requires:
     - pip
+    - pytest
 
 about:
   home: https://github.com/milesgranger/pyrus-cramjam
