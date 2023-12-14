@@ -37,7 +37,7 @@ test:
     - cramjam
   commands:
     - pip check
-    - pytest -v -n auto
+    - pytest -v -n auto tests
   requires:
     - pip
     - pytest >=5.30
