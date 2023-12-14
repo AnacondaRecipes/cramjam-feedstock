@@ -14,7 +14,8 @@ build:
   skip: True # [py<37]
   script:
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-
+  missing_dso_whitelist:
+    - $RPATH/ld64.so.1
 requirements:
   build:
     - {{ compiler('rust') }}                 # [unix]
