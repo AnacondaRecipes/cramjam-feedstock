@@ -37,6 +37,10 @@ test:
   imports:
     - cramjam
   commands:
+    # Added in order to select the hypothesis profile
+    # https://hypothesis.readthedocs.io/en/latest/settings.html#hypothesis.settings.deadline
+    - export CI=1. # [not win]
+    - set CI="1"
     - pip check
     - pytest -v -n auto tests
   requires:
