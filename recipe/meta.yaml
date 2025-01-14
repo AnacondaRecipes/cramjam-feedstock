@@ -21,6 +21,8 @@ requirements:
   build:
     - {{ compiler('rust') }}
     - {{ compiler('c') }}
+    - autoconf
+    - automake
   host:
     - python
     - pip
