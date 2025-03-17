@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 336cc591d86cbd225d256813779f46624f857bc9c779db126271eff9ddc524ae
+  patches:
+    - patches/0001-Remove-experimental-codecs.patch
 
 build:
   number: 0
@@ -21,10 +23,8 @@ requirements:
   build:
     - {{ compiler('rust') }}
     - {{ compiler('c') }}
-    - autoconf  # [unix]
-    - automake  # [unix]
-    - libtool   # [unix]
-    - make      # [unix]
+    - patch     # [unix]
+    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -55,7 +55,7 @@ test:
     - hypothesis
 
 about:
-  home: https://github.com/milesgranger/pyrus-cramjam
+  home: https://github.com/milesgranger/cramjam
   license: MIT
   license_family: MIT
   license_file:
@@ -65,10 +65,7 @@ about:
   description: |
     Extremely thin Python bindings to de/compression algorithms in Rust.
     Allows for using algorithms such as Snappy, without any system dependencies.
-    This is handy when being used in environments like AWS Lambda,
-    where installing packages like python-snappy becomes difficult because of
-    system level dependencies.
-  dev_url: https://github.com/milesgranger/pyrus-cramjam
+  dev_url: https://github.com/milesgranger/cramjam
   doc_url: https://docs.rs/cramjam/latest/cramjam/
 
 extra:
