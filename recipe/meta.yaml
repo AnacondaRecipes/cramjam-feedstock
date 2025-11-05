@@ -66,3 +66,5 @@ extra:
   recipe-maintainers:
     - martindurant
     - milesgranger
+  skip-lints:
+    - host_section_needs_exact_pinnings
