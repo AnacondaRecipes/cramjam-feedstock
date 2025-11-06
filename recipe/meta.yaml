@@ -1,35 +1,29 @@
 {% set name = "cramjam" %}
-{% set version = "2.9.1" %}
+{% set version = "2.11.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 336cc591d86cbd225d256813779f46624f857bc9c779db126271eff9ddc524ae
-  patches:
-    - patches/0001-Remove-experimental-codecs.patch
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 5c82500ed91605c2d9781380b378397012e25127e89d64f460fea6aeac4389b4
 
 build:
   number: 0
-  skip: True # [py<38]
   script:
-    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
-  missing_dso_whitelist:
-    - $RPATH/ld64.so.1  # [s390x]
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+  skip: true # [py<38]
+
 requirements:
   build:
-    - {{ compiler('rust') }}
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - patch     # [unix]
-    - m2-patch  # [win]
+    - {{ compiler('rust') }}
   host:
     - python
     - pip
-    - setuptools
-    - wheel
     - maturin >=0.14
     - cargo-bundle-licenses
   run:
@@ -66,9 +60,11 @@ about:
     Extremely thin Python bindings to de/compression algorithms in Rust.
     Allows for using algorithms such as Snappy, without any system dependencies.
   dev_url: https://github.com/milesgranger/cramjam
-  doc_url: https://docs.rs/cramjam/latest/cramjam/
+  doc_url: https://docs.rs/cramjam/latest/cramjam
 
 extra:
   recipe-maintainers:
     - martindurant
     - milesgranger
+  skip-lints:
+    - host_section_needs_exact_pinnings
