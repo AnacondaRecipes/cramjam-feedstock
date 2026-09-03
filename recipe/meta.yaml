@@ -1,8 +1,8 @@
 {% set name = "cramjam" %}
-{% set version = "2.11.0" %}
+{% set version = "2.12.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -14,7 +14,7 @@ build:
   script:
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-  skip: true # [py<38]
+  skip: true # [py<311]
 
 requirements:
   build:
@@ -40,7 +40,7 @@ test:
     - export CI=1. # [not win]
     - set CI="1"
     - pip check
-    - pytest -v -n auto tests
+    - pytest -vv -n auto tests
   requires:
     - pip
     - pytest >=5.30
@@ -68,3 +68,4 @@ extra:
     - milesgranger
   skip-lints:
     - host_section_needs_exact_pinnings
+    - reachable_url
