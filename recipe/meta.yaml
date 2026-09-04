@@ -1,5 +1,5 @@
 {% set name = "cramjam" %}
-{% set version = "2.12.0" %}
+{% set version = "2.12.1" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0471df877499536dfdd03036944ab36053e7636586576037557e86725d050416
+  sha256: 75187b77a84b1f457f9555604775b70d04102af312224d03c873da59011bba31
 
 build:
   number: 0
