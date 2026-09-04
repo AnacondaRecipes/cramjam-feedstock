@@ -1,20 +1,20 @@
 {% set name = "cramjam" %}
-{% set version = "2.11.0" %}
+{% set version = "2.12.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 5c82500ed91605c2d9781380b378397012e25127e89d64f460fea6aeac4389b4
+  sha256: 75187b77a84b1f457f9555604775b70d04102af312224d03c873da59011bba31
 
 build:
   number: 0
   script:
     - {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-  skip: true # [py<38]
+  skip: true # [py<311]
 
 requirements:
   build:
@@ -40,7 +40,7 @@ test:
     - export CI=1. # [not win]
     - set CI="1"
     - pip check
-    - pytest -v -n auto tests
+    - pytest -vv -n auto tests
   requires:
     - pip
     - pytest >=5.30
@@ -68,3 +68,4 @@ extra:
     - milesgranger
   skip-lints:
     - host_section_needs_exact_pinnings
+    - reachable_url
